@@ -1,0 +1,10 @@
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8080:80"
+    # volumes не потрібні, все копіюється під час build
+    command: ["nginx", "-g", "daemon off;"]
+    restart: unless-stopped

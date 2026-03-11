@@ -6,9 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    <input type="text" placeholder="input text here">
+    <input class="some-class" type="text" placeholder="input text here">
     <script type="module">
-        import { default as Component } from '/component.js';
+        import { default as Component } from '/js/components/component.js';
+        var i = Component.fromClass('some-class');
+        i.disable();
         
     </script>
 </body>
