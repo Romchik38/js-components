@@ -43,16 +43,20 @@ export default class Component extends EE {
         container.appendChild(this.node);
     }
 
-    /** Enable a component */
+    /** Enable the component */
     enable() {
         this.node.disabled = false;
     }
 
-    /** Disable a component */
+    /** Disable the component */
     disable() {
         this.node.disabled = true;
     }
 
+    /** 
+     * Registers a callback on givent event 
+     * @param {string} name - The Event name
+     * */
     onEvent(name, callback) {
         if (typeof name !== 'string') {
             throw new Error('Param event name is invalid');
@@ -75,7 +79,8 @@ export default class Component extends EE {
         this.registeredEvents[name] = existingEvents;
         return this;
     }
-    
+
+    /** Hide the component */
     hide() {
         if (this.fnHide !== null) {
             this.fnHide(this.node);
