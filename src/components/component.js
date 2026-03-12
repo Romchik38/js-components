@@ -22,6 +22,10 @@ export default class Component extends EE {
         this.registeredEvents = [];
     }
 
+    /**
+     * The Component finds an element by class name and appends itself as a child
+     * @param {string} className 
+     */
     appendByClass(className) {
         if (typeof className !== 'string') {
             throw new Error('param className is invalid');
@@ -39,10 +43,12 @@ export default class Component extends EE {
         container.appendChild(this.node);
     }
 
+    /** Enable a component */
     enable() {
         this.node.disabled = false;
     }
 
+    /** Disable a component */
     disable() {
         this.node.disabled = true;
     }
