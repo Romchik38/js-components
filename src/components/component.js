@@ -131,6 +131,7 @@ export default class Component extends EE {
         this.node.name = val;
     }
 
+    // Create a component from a node by its class
     static fromClass(className) {
         if (typeof className !== 'string') {
             throw new Error('Param className is invalid');
@@ -145,6 +146,22 @@ export default class Component extends EE {
         var node = collection[0];
         return new this(node);
     }
+
+    // Create a component from a node by its name
+    static fromName(name) {
+        if (typeof name !== 'string') {
+            throw new Error('Param name is invalid');
+        }
+        var collection = document.getElementsByName(name);
+        var len = collection.length;
+        if ( len === 0) {
+            throw new Error(`element ${name} not found`);
+        } else if (len > 1) {
+            throw new Error(`element ${name} is more than one`);
+        }
+        var node = collection[0];
+        return new this(node);
+    }    
 
     // Run registered events
     _event(name, ...params) {
