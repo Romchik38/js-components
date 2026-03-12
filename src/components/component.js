@@ -82,14 +82,15 @@ export default class Component extends EE {
 
     /** Hide the component */
     hide() {
-        if (this.fnHide !== null) {
+        if (typeof this.fnHide === 'function') {
             this.fnHide(this.node);
         } else {
             this.node.style.display = 'none';
         }
     }
 
-    show(type) {
+    /** Display the component */    
+    show(type = 'block') {
         if (this.fnShow !== null) {
             this.fnShow(this.node);
         } else {
