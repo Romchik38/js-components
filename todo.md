@@ -1,5 +1,7 @@
 # TODO
 
-- test hiw
+- move `fromName`
+- tests
 - readme
 - license
+- version
