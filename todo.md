@@ -1,7 +1,6 @@
 # TODO
 
 - tests
-  - component
   - component collection
   - form
   - formCollection

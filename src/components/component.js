@@ -175,20 +175,14 @@ export default class Component extends EE {
         return new this(node);
     }    
 
-    // Run registered events
-    _event(name, ...params) {
-        var existingEvents = this.registeredEvents[name] || [];
-        
-        if (existingEvents.length === 0) {
-            throw new Error(`Event with name ${name} is not registered`);
-        }
-        for (var callback of existingEvents) {
-            callback(...params);
-        }
-    }
-
-    /** @todo usage */
-    _createElement (tagName, attributes = {}, text = '') {
+    /**
+     * 
+     * @param {string} tagName 
+     * @param {attr name: attr val, ...} attributes 
+     * @param {string} text 
+     * @returns 
+     */
+    static fromParams (tagName, attributes = {}, text = '') {
         if (typeof tagName !== 'string') {
             throw new Error('Invalid param create element tag name');
         }
@@ -202,6 +196,18 @@ export default class Component extends EE {
             element.setAttribute(key, attributes[key]);
         }
         element.innerText = text;
-        return element;
+        return new this(element);
     };
+    
+    // Run registered events
+    _event(name, ...params) {
+        var existingEvents = this.registeredEvents[name] || [];
+        
+        if (existingEvents.length === 0) {
+            throw new Error(`Event with name ${name} is not registered`);
+        }
+        for (var callback of existingEvents) {
+            callback(...params);
+        }
+    }
 };
