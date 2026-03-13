@@ -14,12 +14,12 @@ import { default as Component } from '/js/components/component.js';
     // create a component
     var d = new Component(div);
     // test show with callback
-    d.fnShow = (node) => {
+    d.onShow((node) => {
         shown = true;
         if (node instanceof HTMLElement) {
             nodePassed = true;
         }
-    };    
+    });
     d.show();
     if (shown === true) {
         console.log(testName + ' - passed');

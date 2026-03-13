@@ -4,7 +4,8 @@
 import { default as EE } from './../utils/eventEmitter.js';
 
 export default class Component extends EE {
-    
+    #fnHide = null;
+    #fnShow = null;
     constructor(node) {
         super();
         // Node
@@ -13,10 +14,6 @@ export default class Component extends EE {
         } else {
             this.node = node;
         }
-        // user functions
-        this.fnHide = null;
-        this.fnShow = null;
-
         // events
         this.domEvents = ['click', 'change', 'submit'];
         this.registeredEvents = [];
@@ -82,8 +79,8 @@ export default class Component extends EE {
 
     /** Hide the component */
     hide() {
-        if (typeof this.fnHide === 'function') {
-            this.fnHide(this.node);
+        if (typeof this.#fnHide === 'function') {
+            this.#fnHide(this.node);
         } else {
             this.node.style.display = 'none';
         }
@@ -91,8 +88,8 @@ export default class Component extends EE {
 
     /** Display the component */    
     show(type = 'block') {
-        if (this.fnShow !== null) {
-            this.fnShow(this.node);
+        if (this.#fnShow !== null) {
+            this.#fnShow(this.node);
         } else {
             if (typeof type === 'string') {
                 this.node.style.display = type;
@@ -111,7 +108,7 @@ export default class Component extends EE {
 
     onHide(callback) {      
         if  (typeof callback === 'function') {
-            this.fnHide = callback;
+            this.#fnHide = callback;
             return this;
         } else {
             throw new Error('Param hide is invalid');
@@ -120,7 +117,7 @@ export default class Component extends EE {
 
     onShow(callback) {      
         if  (typeof callback === 'function') {
-            this.fnShow = callback;
+            this.#fnShow = callback;
             return this;
         } else {
             throw new Error('Param show is invalid');

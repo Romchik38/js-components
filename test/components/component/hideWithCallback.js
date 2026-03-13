@@ -14,12 +14,12 @@ import { default as Component } from '/js/components/component.js';
     // create a component
     var d = new Component(div);
     // test hide with callback
-    d.fnHide = (node) => {
+    d.onHide((node) => {
         hidden = true;
         if (node instanceof HTMLElement) {
             nodePassed = true;
         }
-    };    
+    });
     d.hide();
     if (hidden === true) {
         console.log(testName + ' - passed');
