@@ -99,6 +99,7 @@ export default class Component extends EE {
         }
     }
 
+    /** Adds inner text */
     text(newText) {
         if (typeof newText !== 'string') {
             throw new Error('Param text is invalid');
@@ -106,6 +107,7 @@ export default class Component extends EE {
         this.node.innerText = newText;
     }
 
+    /** Registers a callback to handle hiding */
     onHide(callback) {      
         if  (typeof callback === 'function') {
             this.#fnHide = callback;
@@ -115,6 +117,7 @@ export default class Component extends EE {
         }
     }
 
+    /** Registers a callback to handle showing */    
     onShow(callback) {      
         if  (typeof callback === 'function') {
             this.#fnShow = callback;
