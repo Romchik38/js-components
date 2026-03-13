@@ -187,7 +187,7 @@ export default class Component extends EE {
         }
     }
 
-
+    /** @todo usage */
     _createElement (tagName, attributes = {}, text = '') {
         if (typeof tagName !== 'string') {
             throw new Error('Invalid param create element tag name');
