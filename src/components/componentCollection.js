@@ -67,6 +67,11 @@ class ComponentCollection {
         }
     }
 
+    /**
+     * 
+     * @param {string} className 
+     * @returns {Component}
+     */
     static fromClass(className) {
         if (typeof className !== 'string') {
             throw new Error('Param className is invalid');
@@ -74,6 +79,9 @@ class ComponentCollection {
         var nodes = document.getElementsByClassName(className);
         if (! nodes instanceof HTMLCollection ) {
             throw new Error('Param className is invalid. Expected HTMLCollection');
+        }
+        if (nodes.length === 0) {
+            throw new Error('Elements with class name ' + className + ' not present');
         }
         var components = [];
         for (var node of nodes) {
