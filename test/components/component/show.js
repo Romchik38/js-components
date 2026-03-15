@@ -26,5 +26,5 @@ import { default as Component } from '/js/components/component.js';
         console.log(testNameWithValue + ' - passed');
     } else {
         throw Error(testNameWithValue + ' - expected' + displayFlex + ', found ' + div.style.display);
-    }    
+    }
 })();
