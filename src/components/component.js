@@ -101,8 +101,12 @@ export default class Component extends EE {
         }
     }
 
-    /** Adds inner text */
-    text(newText) {
+    /** 
+     * Adds inner text.
+     * Do not pass the text parameter for clearing.
+     * @param {string} newText
+    */
+    text(newText = '') {
         if (typeof newText !== 'string') {
             throw new Error('Param text is invalid');
         }

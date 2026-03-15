@@ -56,8 +56,12 @@ class ComponentCollection {
         }
     }
 
-    /** test it before usage */
-    text(newText) {       
+    /** 
+     * Adds inner text.
+     * Do not pass the text parameter for clearing.
+     * @param {string} newText
+    */
+    text(newText = '') {       
         for (var component of this.components) {
             component.text(newText);
         }
