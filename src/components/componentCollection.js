@@ -27,6 +27,10 @@ class ComponentCollection {
         }
     }
 
+    /**
+     * @param {string} name 
+     * @param {function} callback - You can use this inside a callback to refer to the component.
+     */
     onEvent(name, callback) {
         for (var component of this.components) {
             component.onEvent(name, callback);

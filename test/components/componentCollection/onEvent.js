@@ -1,7 +1,5 @@
 'use strict';
 
-/** @todo implement */
-
 import { default as ComponentCollection } from '/js/components/componentCollection.js';
 import { default as Component } from '/js/components/component.js';
 
@@ -23,7 +21,7 @@ import { default as Component } from '/js/components/component.js';
         new Component(div2)
     ];
     var dc = new ComponentCollection(components);
-    dc.onEvent('click', (e) => {
+    dc.onEvent('click', function() {
         this.text(workValue);
     })
     div.click();
