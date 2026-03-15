@@ -1,5 +1,6 @@
 # TODO
 
+- eslint
 - tests
   - component collection
   - form
