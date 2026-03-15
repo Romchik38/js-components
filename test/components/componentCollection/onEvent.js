@@ -1,5 +1,7 @@
 'use strict';
 
+/** @todo implement */
+
 import { default as ComponentCollection } from '/js/components/componentCollection.js';
 import { default as Component } from '/js/components/component.js';
 

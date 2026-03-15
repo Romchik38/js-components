@@ -51,8 +51,9 @@ export default class Component extends EE {
     }
 
     /** 
-     * Registers a callback on givent event 
+     * Registers a callback on givent DOM event 
      * @param {string} name - The Event name
+     * @param {function} callback - Params - event, this - the component
      * */
     onEvent(name, callback) {
         if (typeof name !== 'string') {
@@ -67,6 +68,7 @@ export default class Component extends EE {
         }
 
         var existingEvents = this.registeredEvents[name] || [];
+        // One-time registration of an internal callback to later execute all received callbacks.
         if (existingEvents.length === 0) {
             this.node.addEventListener(name, (...params) => {
                 this._event(name, ...params);
@@ -199,15 +201,20 @@ export default class Component extends EE {
         return new this(element);
     };
     
-    // Run registered events
+    /**
+     * This function runs on every event and calls all registered callbacks.
+     * @param {string} name 
+     * @param  {...any} params 
+     */
     _event(name, ...params) {
         var existingEvents = this.registeredEvents[name] || [];
         
         if (existingEvents.length === 0) {
             throw new Error(`Event with name ${name} is not registered`);
         }
+        
         for (var callback of existingEvents) {
-            callback(...params);
+            callback.call(this, ...params);
         }
     }
 };
