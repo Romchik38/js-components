@@ -1,7 +1,6 @@
 'use strict';
 
-/** @todo replace url */
-import { default as Component } from '/media/js/modules/components/component.js';
+import { default as Component } from './component.js';
 
 class Form extends Component {
     submit() {
