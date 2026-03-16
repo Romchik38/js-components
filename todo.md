@@ -2,9 +2,6 @@
 
 - eslint
 - tests
-  - component collection
-  - form
-  - formCollection
   - urlbuilder
   - target
   - dynamic target
