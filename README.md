@@ -1,13 +1,20 @@
 # Components
 
+![status](https://placehold.co/15x15/ff0000/000000/png?text=D) `status: in development`
+
 Contents:
 
+- Description
 - Install
 - Run tests
 
+## Description
+
+A lightweight vanilla JavaScript component library for simple DOM element management without external dependencies.
+
 ## Install
 
-Copy file from `src` to your project's public folder.
+Copy the contents of `src` to your project's public folder.
 
 ## Run tests
 
