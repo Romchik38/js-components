@@ -68,7 +68,6 @@ class ComponentCollection {
     }
 
     /**
-     * 
      * @param {string} className 
      * @returns {Component}
      */
@@ -90,6 +89,10 @@ class ComponentCollection {
         return new this(components);
     }
 
+    /**
+     * @param {string} className 
+     * @returns {Component}
+     */    
     static fromTag(tagName) {
         if (typeof tagName !== 'string') {
             throw new Error('Param tagName is invalid');
