@@ -61,7 +61,7 @@ export default class EventEmitter {
     /**
      * Subscribe a unique callback to the event.
      * @param {*} name - Event name
-     * @param {*} fn - Event callback
+     * @param {function} fn - Event callback
      */
     on(name, fn) {
         const event = this.events.get(name);
@@ -69,6 +69,11 @@ export default class EventEmitter {
         else this.events.set(name, new Set([fn]));
     }
 
+    /**
+     * The event will be removed after the first execution
+     * @param {*} name - Event name
+     * @param {function} fn - Event callback
+     */
     once(name, fn) {
         const wrapper = (...args) => {
             this.remove(name, wrapper);
@@ -78,6 +83,11 @@ export default class EventEmitter {
         this.on(name, wrapper);
     }
 
+    /**
+     * Removes the callback
+     * @param {*} name - Event name
+     * @param {function} fn - Event callback
+     */
     remove(name, fn) {
         const event = this.events.get(name);
         if (!event) return;
