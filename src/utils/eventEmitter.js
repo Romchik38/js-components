@@ -6,11 +6,17 @@ export default class EventEmitter {
         this.wrappers = new Map();
     }
 
+    /**
+     * Delete the event by name, or delete all events if no name was provided
+     */
     clear(name) {
         if (name) this.events.delete(name);
         else this.events.clear();
     }
 
+    /**
+     * @returns {int} - Returns the number of registered callbacks or 0.
+     */
     count(name) {
         const event = this.events.get(name);
         return event ? event.size : 0;
