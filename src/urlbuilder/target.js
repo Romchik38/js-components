@@ -1,8 +1,13 @@
 'use strict';
 
-export default function(parts){
+/**
+ * 
+ * @param {Array<string>} parts 
+ * @returns 
+ */
+export default function(parts = []){
     if(parts.length === 0) {
-        throw new Error('parts is empty');
+        return '/';
     }
-    return '/' + parts.join('/');
+    return '/' + parts.map((value)=>encodeURIComponent(value)).join('/');
 };
