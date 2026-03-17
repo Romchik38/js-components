@@ -2,9 +2,10 @@
 
 export default function(target){
     /** 
-     * parts    - array of controller names like ['root', 'article']
-     * queries  - array of objects { name: 'q1', value: 'v1' }
-     * fragment - string without #
+     * The urbuilder encode queries.
+     * @param {array<string>} parts - The Path /article looks like ['article']
+     * @param {array<Query>} queries  - The queries
+     * @param {string} fragment - The fragment without #
      * */
     return function(parts, queries = [], fragment = ''){
         var queryPart = '';
