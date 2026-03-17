@@ -51,6 +51,9 @@ export default class EventEmitter {
         return new Set(event);
     }
 
+    /**
+     * @returns {Iterator<any>} Events' names
+     */
     names() {
         return [...this.events.keys()];
     }
