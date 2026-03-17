@@ -22,6 +22,11 @@ export default class EventEmitter {
         return event ? event.size : 0;
     }
 
+    /**
+     * Runs an event
+     * @param {*} name - Event name
+     * @param {...*} args - Event args
+     */
     emit(name, ...args) {
         const event = this.events.get(name);
         if (!event) return;
@@ -30,7 +35,18 @@ export default class EventEmitter {
         }
     }    
 
+    /**
+     * 
+     * @param {*} name - Event name
+     * @returns {Set} - Event's callbacks
+     */
     listeners(name) {
+        if (
+            typeof name !== 'string' ||
+            name === ''
+        ) {
+            throw Error('Param name is invalid')
+        }
         const event = this.events.get(name);
         return new Set(event);
     }
