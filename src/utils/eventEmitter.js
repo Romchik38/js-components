@@ -6,6 +6,33 @@ export default class EventEmitter {
         this.wrappers = new Map();
     }
 
+    clear(name) {
+        if (name) this.events.delete(name);
+        else this.events.clear();
+    }
+
+    count(name) {
+        const event = this.events.get(name);
+        return event ? event.size : 0;
+    }
+
+    emit(name, ...args) {
+        const event = this.events.get(name);
+        if (!event) return;
+        for (const fn of event.values()) {
+            fn(...args);
+        }
+    }    
+
+    listeners(name) {
+        const event = this.events.get(name);
+        return new Set(event);
+    }
+
+    names() {
+        return [...this.events.keys()];
+    }
+    
     on(name, fn) {
         const event = this.events.get(name);
         if (event) event.add(fn);
@@ -21,14 +48,6 @@ export default class EventEmitter {
         this.on(name, wrapper);
     }
 
-    emit(name, ...args) {
-        const event = this.events.get(name);
-        if (!event) return;
-        for (const fn of event.values()) {
-            fn(...args);
-        }
-    }
-
     remove(name, fn) {
         const event = this.events.get(name);
         if (!event) return;
@@ -41,24 +60,5 @@ export default class EventEmitter {
             event.delete(wrapper);
             if (event.size === 0) this.events.delete(name);
         }
-    }
-
-    clear(name) {
-        if (name) this.events.delete(name);
-        else this.events.clear();
-    }
-
-    count(name) {
-        const event = this.events.get(name);
-        return event ? event.size : 0;
-    }
-
-    listeners(name) {
-        const event = this.events.get(name);
-        return new Set(event);
-    }
-
-    names() {
-        return [...this.events.keys()];
     }
 }
