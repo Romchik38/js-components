@@ -54,7 +54,12 @@ export default class EventEmitter {
     names() {
         return [...this.events.keys()];
     }
-    
+
+    /**
+     * Subscribe a unique callback to the event.
+     * @param {*} name - Event name
+     * @param {*} fn - Event callback
+     */
     on(name, fn) {
         const event = this.events.get(name);
         if (event) event.add(fn);
