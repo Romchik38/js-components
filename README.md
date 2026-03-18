@@ -8,10 +8,18 @@ Contents:
 - Example
 - Install
 - Run tests
+- Api
 
 ## Description
 
 A lightweight vanilla JavaScript component library for simple DOM element management without external dependencies.
+
+Features:
+
+- Each `Component` internally holds an `HTMLElement`.
+- You work directly only with `Component`.
+- If you need to extend a component’s capabilities for working with an `HTMLElement`, you create a new component that inherits from `Component` and interact with the DOM node inside the class.
+- The `Component` extends `EventEmitter`, so you can use `events api`.
 
 ## Example
 
@@ -44,3 +52,62 @@ Copy the contents of `src` to your project's public folder.
 2. Visit [localhost:8080](http://localhost:8080)
 3. Open browser console.
 4. Click on a test or examples.
+
+## Api
+
+- [Component](./src/components/component.js) controls a HTMLElement.
+- [Component Collection](./src/components/componentCollection.js) - a set of components.
+- [Form](./src/components/form.js) - extended component with form submission capability.
+- [EventEmitter](./src/utils/eventEmitter.js) - provides the component with the ability to subscribe to and trigger events.
+
+### Component
+
+- Create a component
+- Default usage
+
+#### Create a component
+
+You can create a component in the following ways:
+
+- construct method:
+
+    ```js
+    var div = document.createElement('div');
+    var d = new Component(div);
+    ```
+
+- from HTMLElement class `Component.fromClass(className)`
+- from HTMLElement name `Component.fromName(name)`
+- from HTMLElement id `Component.fromId(id)`
+- from parameters:
+
+    ```js
+    var component = Component.fromParams(
+        'div',
+        {
+            class: 'some-class'  // class is an attribute name
+        },
+        'some inner text'
+    );  
+    ```
+
+#### Default usage
+
+After creating a component, you can use the built-in functions:
+
+| api name                      | description                                                                |
+|-------------------------------|----------------------------------------------------------------------------|
+| `appendByClass(className)`    | The Component finds an element by class name and appends itself as a child |
+| `appendById(id)`              | The Component finds an element by id and appends itself as a child         |
+| `enable()`                    | The component can be accessible                                            |
+| `disable()`                   | The component cannot be accessible                                         |
+| `onEvent(name, callback)`     | Subscribe to a DOM event                                                   |
+| `hide()`                      | Hide the component                                                         |
+| `show(type = 'block')`        | Display the component                                                      |
+| `text(newText = '')`          | Adds inner text                                                            |
+| `onHide(callback)`            | Registers a callback to handle hiding                                      |
+| `onShow(callback)`            | Registers a callback to handle showing                                     |
+| `getValue()`                  | access value attribute                                                     |
+| `setValue(val)`               | update value attribute                                                     |
+| `getName()`                   | access name attribute                                                      |
+| `setName(val)`                | update name attribute                                                      |
