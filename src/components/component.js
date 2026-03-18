@@ -40,6 +40,23 @@ export default class Component extends EE {
         container.appendChild(this.node);
     }
 
+    /**
+     * The Component finds an element by id and appends itself as a child
+     * @param {string} id
+     */    
+    appendById(id) {
+        if (typeof id !== 'string') {
+            throw new Error('param id is invalid');
+        } else if (id === '') {
+            throw new Error('param id is empty');
+        }
+        var element = document.getElementById(id);
+        if (element === null) {
+            throw new Error(`Component container with id ${id} not found`);
+        }
+        element.appendChild(this.node);
+    }
+    
     /** Enable the component */
     enable() {
         this.node.disabled = false;
