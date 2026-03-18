@@ -181,6 +181,18 @@ export default class Component extends EE {
         return new this(node);
     }    
 
+    // Create a component from a node by its id
+    static fromId(id) {
+        if (typeof id !== 'string') {
+            throw new Error('Param id is invalid');
+        }
+        var element = document.getElementById(id);
+        if (element === null) {
+            throw new Error(`element ${id} not found`);
+        }
+        return new this(element);
+    }      
+
     /**
      * 
      * @param {string} tagName 
