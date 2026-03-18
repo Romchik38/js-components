@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+</head>
+
+<body>
+    <h2>Counter example</h2>
+    <button id="api-button-count">
+        Count is: <span id="api-count">0</span>
+    </button>
+    <script type="module">
+        'use strict';
+        import { default as Component } from '/js/components/component.js';
+        var button = Component.fromId('api-button-count');
+        var counter = Component.fromId('api-count');
+        var count = 0;
+        button.onEvent('click', () => {
+            counter.text(++count);
+        });
+    </script>
+</body>
+
+</html>
