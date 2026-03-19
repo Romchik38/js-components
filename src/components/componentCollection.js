@@ -51,6 +51,19 @@ class ComponentCollection {
         }        
     }
 
+    /**
+     * @param {function} callback - Params - node
+     * @returns 
+     */
+    onHide(callback) {
+        if  (typeof callback !== 'function') {
+            throw new Error('Param callback is invalid');
+        }
+        for (var component of this.components) {
+            component.onHide(callback);
+        }        
+    }
+
     show(type = 'block') {
         for (var component of this.components) {
             component.show(type);
