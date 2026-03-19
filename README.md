@@ -17,7 +17,7 @@ A lightweight vanilla JavaScript component library for simple DOM element manage
 Features:
 
 - Each `Component` internally holds an `HTMLElement`.
-- You work directly only with `Component`.
+- Inside the module you work directly only with `Component`.
 - If you need to extend a component’s capabilities for working with an `HTMLElement`, you create a new component that inherits from `Component` and interact with the DOM node inside the class.
 - The `Component` extends `EventEmitter`, so you can use `events api`.
 
@@ -44,7 +44,7 @@ Simple counter like [vue example](https://vuejs.org/guide/introduction.html).
 
 ## Install
 
-Copy the contents of `src` to your project's public folder.
+Installation is not required. Copy the contents of `src` to your project's public folder.
 
 ## Run tests
 
@@ -62,8 +62,10 @@ Copy the contents of `src` to your project's public folder.
 
 ### Component
 
-- Create a component
-- Default usage
+Contents:
+
+- Create a component,
+- Default usage.
 
 #### Create a component
 
@@ -147,3 +149,34 @@ After creating a component collection, you can use the built-in functions:
 | `onShow(callback)`            | Registers a callback to handle showing |
 | `show(type = 'block')`        | Display the components                 |
 | `text(newText = '')`          | Adds inner text                        |
+
+### Form
+
+A [Form](./src/components/form.js) is an extended component that provides the following additional capabilities:
+
+- a `submit()` method to control the submission flow.
+
+### EventEmitter
+
+[EventEmitter](./src/utils/eventEmitter.js) is used to subscribe to events and emit events. The `Component` extends `EventEmitter`, so each component can subscribe to another component’s event. You can also execute other module logic when events occur.
+
+Example:
+
+```js
+// Creation of an extended component
+class SuperButton extends Component {
+    someFunction() {
+        // logic
+        this.emit('someEvent');
+        /// logic
+    }
+}
+
+var button = Component.fromId('id1');
+var superButton = SuperButton.fromId('id2');
+
+superButton.on('someEvent', () => {
+    button.disable();
+    // do another work
+});
+```
