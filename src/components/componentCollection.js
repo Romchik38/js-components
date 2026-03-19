@@ -57,6 +57,12 @@ class ComponentCollection {
         }
     }
 
+    hide() {
+        for (var component of this.components) {
+            component.hide();
+        }
+    }
+
     /** 
      * Adds inner text.
      * Do not pass the text parameter for clearing.

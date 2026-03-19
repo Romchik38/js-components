@@ -141,6 +141,7 @@ After creating a component collection, you can use the built-in functions:
 |-------------------------------|----------------------------------------|
 | `disable()`                   | The components cannot be accessible    |
 | `enable()`                    | The components can be accessible       |
+| `hide()`                      | Hide the components                    |
 | `onEvent(name, callback)`     | Subscribe to a DOM event               |
 | `onShow(callback)`            | Registers a callback to handle showing |
 | `show(type = 'block')`        | Display the components                 |
