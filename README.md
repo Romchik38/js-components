@@ -26,6 +26,7 @@ Features:
 Simple counter like [vue example](https://vuejs.org/guide/introduction.html).
 
 ```html
+<!-- HTML -->
 <button id="api-button-count">
     Count is: <span id="api-count">0</span>
 </button>
