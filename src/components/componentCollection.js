@@ -28,6 +28,7 @@ class ComponentCollection {
     }
 
     /**
+     * Subscribe the components to a DOM event
      * @param {string} name 
      * @param {function} callback - You can use this inside a callback to refer to the component.
      */
@@ -50,7 +51,7 @@ class ComponentCollection {
         }        
     }
 
-    show(type) {
+    show(type = 'block') {
         for (var component of this.components) {
             component.show(type);
         }

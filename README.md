@@ -111,3 +111,37 @@ After creating a component, you can use the built-in functions:
 | `setValue(val)`               | update value attribute                                                     |
 | `getName()`                   | access name attribute                                                      |
 | `setName(val)`                | update name attribute                                                      |
+
+### Component Collection
+
+- Create a component collection
+- Default usage
+
+#### Create a component collection
+
+You can create a component collection in the following ways:
+
+- construct method:
+
+    ```js
+    var div = document.createElement('div');
+    var div2 = document.createElement('div');
+    var components = [div1, div2];
+    var d = new ComponentCollection(components);
+    ```
+
+- from HTMLElement class `ComponentCollection.fromClass(className)`
+- from HTMLElement tag `ComponentCollection.fromTag(tagName)`
+
+#### Default usage of the collection
+
+After creating a component collection, you can use the built-in functions:
+
+| api name                      | description                            |
+|-------------------------------|----------------------------------------|
+| `disable()`                   | The components cannot be accessible    |
+| `enable()`                    | The components can be accessible       |
+| `onEvent(name, callback)`     | Subscribe to a DOM event               |
+| `onShow(callback)`            | Registers a callback to handle showing |
+| `show(type = 'block')`        | Display the components                 |
+| `text(newText = '')`          | Adds inner text                        |
