@@ -125,8 +125,8 @@ You can create a component collection in the following ways:
     ```js
     var div1 = document.createElement('div');
     var div2 = document.createElement('div');
-    var components = [div1, div2];
-    var dc = new ComponentCollection(components);
+    var elements = [div1, div2];
+    var dc = new ComponentCollection(elements);
     ```
 
 - from HTMLElement class `ComponentCollection.fromClass(className)`
@@ -138,7 +138,7 @@ After creating a component collection, you can use the built-in functions:
 
 | api name                      | description                            |
 |-------------------------------|----------------------------------------|
-| `disable()`                   | Makes the components inaccessible.    |
+| `disable()`                   | Makes the components inaccessible.     |
 | `enable()`                    | Makes the components accessible.       |
 | `hide()`                      | Hides the components.                  |
 | `onEvent(name, callback)`     | Subscribes to a DOM event.             |
@@ -213,19 +213,20 @@ Contents:
 
 Urlbuilder is an utilite to build URLs from path parts, query parameters and fragment.
 
-1. Create urbuilder
-2. Form an url
+1. Create urbuilder instance
+2. Form an URL
 3. Full Example
 4. Additional
 
-#### 1. Create urbuilder
+#### 1. Create urbuilder instance
 
-First. The `Urbuilder` need a `target` to form the path. You can choose from 2 variants:
+First. The `urbuilder` need a `target` to form the path. You can choose from 2 variants:
 
 - `target` - build a standart path.
 - `dynamicTarget(dynamicRoot)` - used to swap a special root segment. Based on `target`.
 
 Second. You can pass optional parameters `scheme` and `authority` to form an absolute url.
+
 Finaly. To create an urlbuilder instance run the function constructor `urlbuilder(target, 'https', 'example.com')`.
 
 ```js
@@ -233,44 +234,44 @@ import urlbuilder from '/js/urlbuilder/urlbuilder.js';
 import target from '/js/urlbuilder/target.js';
 
 // Absolute URL
-const ub = urlbuilder(target, 'https', 'example.com');
+var ub = urlbuilder(target, 'https', 'example.com');
 
 // Relative URL
-const ub2 = urlbuilder(target);
+var ub2 = urlbuilder(target);
 ```
 
-#### 2. Form an url
+#### 2. Form an URL
 
-Once you created an urlbuilder instance, you can start to form urls.
+Once you created an urlbuilder instance, you can start to form urls:
 
-- create simple url
-- create url with queries
-- create url with fragment
+- Create simple URL
+- Create URL with queries
+- Create URL with fragment
 
-##### Create simple url
+##### Create simple URL
 
 ```js
-const parts = ['articles'];
-const url = ub(parts); // 'https://example.com/articles'
+var parts = ['articles'];
+var url = ub(parts); // 'https://example.com/articles'
 ```
 
-##### Create url with queries
+##### Create URL with queries
 
 If you need query params, follow next steps:
 
 ```js
 import Query from '/js/urlbuilder/query.js';
 
-const parts = ['articles'];
-const queries = [new Query('order', 'desc'), new Query('page', '2')];
-const url = ub(parts, queries); // 'https://example.com/articles?order=desc&page=2'
+var parts = ['articles'];
+var queries = [new Query('order', 'desc'), new Query('page', '2')];
+var url = ub(parts, queries); // 'https://example.com/articles?order=desc&page=2'
 ```
 
-##### Сreate url with fragment
+##### Сreate URL with fragment
 
 ```js
-const parts = ['articles'];
-const url = ub(parts, [], 'table-1'); // 'https://example.com/articles#table-1'
+var parts = ['articles'];
+var url = ub(parts, [], 'table-1'); // 'https://example.com/articles#table-1'
 ```
 
 #### 3. Full Example
@@ -280,22 +281,23 @@ import urlbuilder from '/js/urlbuilder/urlbuilder.js';
 import target from '/js/urlbuilder/target.js';
 import Query from '/js/urlbuilder/query.js';
 
-const buildUrl = urlbuilder(target, 'https', 'example.com');
-const query1 = new Query('order', 'desc');
-const query2 = new Query('page', '2');
-const url = buildUrl(['articles'], [query1, query2], 'header1');
-// => 'https://example.com/articles?order=desc&page=2#header1'
+var ub = urlbuilder(target, 'https', 'example.com');
+var query1 = new Query('order', 'desc');
+var query2 = new Query('page', '2');
+var url = ub(['articles'], [query1, query2], 'header1'); // 'https://example.com/articles?order=desc&page=2#header1'
 ```
 
 #### 4. Additional
 
-Use `dynamicTarget` to swap a special root segment:
+- Use `dynamicTarget` to swap a special root segment:
 
-```js
-import dynamicTarget from '/js/urlbuilder/dynamicTarget.js';
+    ```js
+    import dynamicTarget from '/js/urlbuilder/dynamicTarget.js';
 
-const dynamic = dynamicTarget('api');
-const buildUrl = urlbuilder(dynamic);
+    var dynamic = dynamicTarget('api');
+    var ub = urlbuilder(dynamic);
 
-buildUrl(['root', 'users']); // '/api/users'
-```
+    ub(['root', 'users']); // '/api/users'
+    ```
+
+- You don't need to encode query parameters, urlbuilder does it itself.
