@@ -7,8 +7,9 @@ Contents:
 - Description
 - Example
 - Install
-- Api
+- Component API
 - Run tests
+- Other utils
 
 ## Description
 
@@ -17,13 +18,13 @@ A lightweight vanilla JavaScript component library for simple DOM element manage
 Features:
 
 - Each `Component` internally holds an `HTMLElement`.
-- Inside the module you work directly only with `Component`.
-- If you need to extend a component’s capabilities for working with an `HTMLElement`, you create a new component that inherits from `Component` and interact with the DOM node inside the class.
-- The `Component` extends `EventEmitter`, so you can use `events api`.
+- Inside the module, you work only with `Component`.
+- If you need to extend a component’s capabilities for working with an `HTMLElement`, create a new component that inherits from `Component` and interact with the DOM node inside that class.
+- The `Component` extends `EventEmitter`, so you can use the events API.
 
 ## Example
 
-Simple counter like [vue example](https://vuejs.org/guide/introduction.html).
+Simple counter, similar to the [Vue example](https://vuejs.org/guide/introduction.html).
 
 ```html
 <!-- HTML -->
@@ -47,9 +48,9 @@ Simple counter like [vue example](https://vuejs.org/guide/introduction.html).
 
 Installation is not required. Copy the contents of `src` to your project's public folder.
 
-## Api
+## Component API
 
-- [Component](./src/components/component.js) controls a HTMLElement.
+- [Component](./src/components/component.js) controls an HTMLElement.
 - [Component Collection](./src/components/componentCollection.js) - a set of components.
 - [Form](./src/components/form.js) - extended component with form submission capability.
 - [EventEmitter](./src/utils/eventEmitter.js) - provides the component with the ability to subscribe to and trigger events.
@@ -58,8 +59,8 @@ Installation is not required. Copy the contents of `src` to your project's publi
 
 Contents:
 
-- Create a component,
-- Default usage.
+- Create a component
+- Default usage
 
 #### Create a component
 
@@ -93,27 +94,27 @@ After creating a component, you can use the built-in functions:
 
 | api name                      | description                                                                |
 |-------------------------------|----------------------------------------------------------------------------|
-| `appendByClass(className)`    | The Component finds an element by class name and appends itself as a child |
-| `appendById(id)`              | The Component finds an element by id and appends itself as a child         |
-| `enable()`                    | The component can be accessible                                            |
-| `disable()`                   | The component cannot be accessible                                         |
-| `onEvent(name, callback)`     | Subscribe to a DOM event                                                   |
-| `hide()`                      | Hide the component                                                         |
-| `show(type = 'block')`        | Display the component                                                      |
-| `text(newText = '')`          | Adds inner text                                                            |
-| `onHide(callback)`            | Registers a callback to handle hiding                                      |
-| `onShow(callback)`            | Registers a callback to handle showing                                     |
-| `getValue()`                  | access value attribute                                                     |
-| `setValue(val)`               | update value attribute                                                     |
-| `getName()`                   | access name attribute                                                      |
-| `setName(val)`                | update name attribute                                                      |
+| `appendByClass(className)`    | Finds an element by class name and appends itself as a child.             |
+| `appendById(id)`              | Finds an element by id and appends itself as a child.                     |
+| `enable()`                    | Makes the component accessible.                                           |
+| `disable()`                   | Makes the component inaccessible.                                         |
+| `onEvent(name, callback)`     | Subscribes to a DOM event.                                                |
+| `hide()`                      | Hides the component.                                                      |
+| `show(type = 'block')`        | Displays the component.                                                   |
+| `text(newText = '')`          | Sets inner text.                                                          |
+| `onHide(callback)`            | Registers a callback to handle hiding.                                    |
+| `onShow(callback)`            | Registers a callback to handle showing.                                   |
+| `getValue()`                  | Accesses the value attribute.                                             |
+| `setValue(val)`               | Updates the value attribute.                                              |
+| `getName()`                   | Accesses the name attribute.                                              |
+| `setName(val)`                | Updates the name attribute.                                               |
 
 ### Component Collection
 
 Contents:
 
-- Create a component collection,
-- Default usage.
+- Create a component collection
+- Default usage
 
 #### Create a component collection
 
@@ -122,7 +123,7 @@ You can create a component collection in the following ways:
 - `construct` method:
 
     ```js
-    var div = document.createElement('div');
+    var div1 = document.createElement('div');
     var div2 = document.createElement('div');
     var components = [div1, div2];
     var dc = new ComponentCollection(components);
@@ -137,14 +138,14 @@ After creating a component collection, you can use the built-in functions:
 
 | api name                      | description                            |
 |-------------------------------|----------------------------------------|
-| `disable()`                   | The components cannot be accessible    |
-| `enable()`                    | The components can be accessible       |
-| `hide()`                      | Hide the components                    |
-| `onEvent(name, callback)`     | Subscribe to a DOM event               |
-| `onHide(callback)`            | Registers a callback to handle hiding  |
-| `onShow(callback)`            | Registers a callback to handle showing |
-| `show(type = 'block')`        | Display the components                 |
-| `text(newText = '')`          | Adds inner text                        |
+| `disable()`                   | Makes the components inaccessible.    |
+| `enable()`                    | Makes the components accessible.       |
+| `hide()`                      | Hides the components.                  |
+| `onEvent(name, callback)`     | Subscribes to a DOM event.             |
+| `onHide(callback)`            | Registers a callback to handle hiding. |
+| `onShow(callback)`            | Registers a callback to handle showing.|
+| `show(type = 'block')`        | Displays the components.               |
+| `text(newText = '')`          | Adds inner text.                       |
 
 ### Form
 
@@ -154,7 +155,7 @@ A [Form](./src/components/form.js) is an extended component that provides the fo
 
 ### EventEmitter
 
-[EventEmitter](./src/utils/eventEmitter.js) is used to subscribe to events and emit events. The `Component` extends `EventEmitter`, so each component can subscribe to another component’s event. You can also execute other module logic when events occur.
+[EventEmitter](./src/utils/eventEmitter.js) is used to subscribe to and emit events. The `Component` extends `EventEmitter`, so each component can subscribe to another component’s events. You can also execute other module logic when events occur.
 
 Example:
 
@@ -180,18 +181,18 @@ superButton.on('someEvent', (...args) => {
 });
 ```
 
-Api:
+API:
 
-| api                   | description                                                                |
-|-----------------------|----------------------------------------------------------------------------|
-| `clear(name)`         | Delete the event by name, or delete all events if no name was provided     |
-| `count(name)`         | Returns the number of registered callbacks or 0                            |
-| `emit(name, ...args)` | Runs an event with arguments `args`                                        |
-| `listeners(name)`     | Get event's callbacks                                                      |
-| `names()`             | Events' names                                                              |
-| `on(name, fn)`        | Subscribe a unique callback to the event                                   |
-| `once(name, fn)`      | Like `on`, except the event is removed after the first execution           |
-| `remove(name, fn)`    | Removes the callback                                                       |
+| api                   | description                                                                                   |
+|-----------------------|-----------------------------------------------------------------------------------------------|
+| `clear(name)`         | Deletes the event by name, or deletes all events if no name is provided.                      |
+| `count(name)`         | Returns the number of registered callbacks.                                                   |
+| `emit(name, ...args)` | Emits an event with the provided arguments.                                                   |
+| `listeners(name)`     | Returns the event's callbacks.                                                                |
+| `names()`             | Returns the names of registered events.                                                       |
+| `on(name, fn)`        | Subscribes a unique callback to the event.                                                    |
+| `once(name, fn)`      | Subscribes a callback that is removed after the first execution.                              |
+| `remove(name, fn)`    | Removes a callback from an event.                                                             |
 
 ## Run tests
 
@@ -201,3 +202,100 @@ All modules are tested. You can find tests in [test](./test/) dir. To run the te
 2. Visit [localhost:8080](http://localhost:8080).
 3. Select the desired test suite.
 4. Open browser console and check tests' status.
+
+## Other utils
+
+Contents:
+
+- [URL builder](./src/urlbuilder/urlbuilder.js) — helps build URLs from path parts, query parameters, and optional fragments.
+
+### URL builder
+
+Urlbuilder is an utilite to build URLs from path parts, query parameters and fragment.
+
+1. Create urbuilder
+2. Form an url
+3. Full Example
+4. Additional
+
+#### 1. Create urbuilder
+
+First. The `Urbuilder` need a `target` to form the path. You can choose from 2 variants:
+
+- `target` - build a standart path.
+- `dynamicTarget(dynamicRoot)` - used to swap a special root segment. Based on `target`.
+
+Second. You can pass optional parameters `scheme` and `authority` to form an absolute url.
+Finaly. To create an urlbuilder instance run the function constructor `urlbuilder(target, 'https', 'example.com')`.
+
+```js
+import urlbuilder from '/js/urlbuilder/urlbuilder.js';
+import target from '/js/urlbuilder/target.js';
+
+// Absolute URL
+const ub = urlbuilder(target, 'https', 'example.com');
+
+// Relative URL
+const ub2 = urlbuilder(target);
+```
+
+#### 2. Form an url
+
+Once you created an urlbuilder instance, you can start to form urls.
+
+- create simple url
+- create url with queries
+- create url with fragment
+
+##### Create simple url
+
+```js
+const parts = ['articles'];
+const url = ub(parts); // 'https://example.com/articles'
+```
+
+##### Create url with queries
+
+If you need query params, follow next steps:
+
+```js
+import Query from '/js/urlbuilder/query.js';
+
+const parts = ['articles'];
+const queries = [new Query('order', 'desc'), new Query('page', '2')];
+const url = ub(parts, queries); // 'https://example.com/articles?order=desc&page=2'
+```
+
+##### Сreate url with fragment
+
+```js
+const parts = ['articles'];
+const url = ub(parts, [], 'table-1'); // 'https://example.com/articles#table-1'
+```
+
+#### 3. Full Example
+
+```js
+import urlbuilder from '/js/urlbuilder/urlbuilder.js';
+import target from '/js/urlbuilder/target.js';
+import Query from '/js/urlbuilder/query.js';
+
+const buildUrl = urlbuilder(target, 'https', 'example.com');
+const query1 = new Query('order', 'desc');
+const query2 = new Query('page', '2');
+const url = buildUrl(['articles'], [query1, query2], 'header1');
+// => 'https://example.com/articles?order=desc&page=2#header1'
+```
+
+#### 4. Additional
+
+Use `dynamicTarget` to swap a special root segment:
+
+```js
+import dynamicTarget from '/js/urlbuilder/dynamicTarget.js';
+
+const dynamic = dynamicTarget('api');
+const buildUrl = urlbuilder(dynamic);
+
+buildUrl(['root', 'users']); // '/api/users'
+```
