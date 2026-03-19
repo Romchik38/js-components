@@ -7,8 +7,8 @@ Contents:
 - Description
 - Example
 - Install
-- Run tests
 - Api
+- Run tests
 
 ## Description
 
@@ -46,13 +46,6 @@ Simple counter like [vue example](https://vuejs.org/guide/introduction.html).
 
 Installation is not required. Copy the contents of `src` to your project's public folder.
 
-## Run tests
-
-1. Use docker `docker compose up --build`
-2. Visit [localhost:8080](http://localhost:8080)
-3. Open browser console.
-4. Click on a test or examples.
-
 ## Api
 
 - [Component](./src/components/component.js) controls a HTMLElement.
@@ -71,7 +64,7 @@ Contents:
 
 You can create a component in the following ways:
 
-- construct method:
+- `construct` method:
 
     ```js
     var div = document.createElement('div');
@@ -116,20 +109,22 @@ After creating a component, you can use the built-in functions:
 
 ### Component Collection
 
-- Create a component collection
-- Default usage
+Contents:
+
+- Create a component collection,
+- Default usage.
 
 #### Create a component collection
 
 You can create a component collection in the following ways:
 
-- construct method:
+- `construct` method:
 
     ```js
     var div = document.createElement('div');
     var div2 = document.createElement('div');
     var components = [div1, div2];
-    var d = new ComponentCollection(components);
+    var dc = new ComponentCollection(components);
     ```
 
 - from HTMLElement class `ComponentCollection.fromClass(className)`
@@ -166,17 +161,42 @@ Example:
 // Creation of an extended component
 class SuperButton extends Component {
     someFunction() {
-        // logic
-        this.emit('someEvent');
-        /// logic
+        // internal logic
+        this.emit('someEvent', ...args);
+        // internal logic
     }
 }
 
 var button = Component.fromId('id1');
 var superButton = SuperButton.fromId('id2');
 
-superButton.on('someEvent', () => {
+superButton.on('someEvent', (...args) => {
+    // 1. work with event's arguments
+    // 2. work with another component
     button.disable();
-    // do another work
+    // 3. do another work
+    console.log('message');
 });
 ```
+
+Api:
+
+| api                   | description                                                                |
+|-----------------------|----------------------------------------------------------------------------|
+| `clear(name)`         | Delete the event by name, or delete all events if no name was provided     |
+| `count(name)`         | Returns the number of registered callbacks or 0                            |
+| `emit(name, ...args)` | Runs an event with arguments `args`                                        |
+| `listeners(name)`     | Get event's callbacks                                                      |
+| `names()`             | Events' names                                                              |
+| `on(name, fn)`        | Subscribe a unique callback to the event                                   |
+| `once(name, fn)`      | Like `on`, except the event is removed after the first execution           |
+| `remove(name, fn)`    | Removes the callback                                                       |
+
+## Run tests
+
+All modules are tested. You can find tests in [test](./test/) dir. To run the tests, follow these steps:
+
+1. Run in the console `docker compose up --build`.
+2. Visit [localhost:8080](http://localhost:8080).
+3. Select the desired test suite.
+4. Open browser console and check tests' status.
