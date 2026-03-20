@@ -1,0 +1,28 @@
+{
+  "name": "components",
+  "version": "1.0.0",
+  "description": "A lightweight vanilla JavaScript component library for simple DOM element management without external dependencies",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "lint": "eslint src --ext .js",
+    "lint:strict": "eslint src --ext .js --max-warnings=0",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Romchik38/js-components.git"
+  },
+  "keywords": [],
+  "author": "Romchik38",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Romchik38/js-components/issues"
+  },
+  "homepage": "https://github.com/Romchik38/js-components#readme",
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-plugin-jsdoc": "^62.8.0"
+  }
+}
