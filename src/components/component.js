@@ -6,6 +6,10 @@ import { default as EE } from './../utils/eventEmitter.js';
 export default class Component extends EE {
     #fnHide = null;
     #fnShow = null;
+
+    /**
+     * @param {HTMLElement} node 
+     */
     constructor(node) {
         super();
         // Node

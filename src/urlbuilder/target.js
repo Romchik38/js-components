@@ -3,7 +3,7 @@
 /**
  * 
  * @param {Array<string>} parts 
- * @returns 
+ * @returns {string}
  */
 export default function(parts = []){
     if(parts.length === 0) {

@@ -1,6 +1,9 @@
 'use strict';
 
 export default class EventEmitter {
+    /**
+     * Creates an EventEmitter instance
+     */
     constructor() {
         this.events = new Map();
         this.wrappers = new Map();
@@ -8,14 +11,19 @@ export default class EventEmitter {
 
     /**
      * Delete the event by name, or delete all events if no name was provided
+     * @param {unknown} name - Event Name
      */
     clear(name) {
-        if (name) this.events.delete(name);
-        else this.events.clear();
+        if (name) {
+            this.events.delete(name);
+        } else {
+            this.events.clear();
+        }
     }
 
     /**
-     * @returns {int} - Returns the number of registered callbacks or 0.
+     * @param {unknown} name - Event Name
+     * @returns {number} - Returns the number of registered callbacks or 0.
      */
     count(name) {
         const event = this.events.get(name);
@@ -24,12 +32,14 @@ export default class EventEmitter {
 
     /**
      * Runs an event
-     * @param {*} name - Event name
-     * @param {...*} args - Event args
+     * @param {unknown} name - Event name
+     * @param {...unknown} args - Event args
      */
     emit(name, ...args) {
         const event = this.events.get(name);
-        if (!event) return;
+        if (!event) {
+            return;
+        }
         for (const fn of event.values()) {
             fn(...args);
         }
@@ -37,7 +47,7 @@ export default class EventEmitter {
 
     /**
      * 
-     * @param {*} name - Event name
+     * @param {unknown} name - Event name
      * @returns {Set} - Event's callbacks
      */
     listeners(name) {
@@ -52,7 +62,7 @@ export default class EventEmitter {
     }
 
     /**
-     * @returns {Iterator<any>} Events' names
+     * @returns {Array} Events' names
      */
     names() {
         return [...this.events.keys()];
@@ -60,19 +70,22 @@ export default class EventEmitter {
 
     /**
      * Subscribe a unique callback to the event.
-     * @param {*} name - Event name
-     * @param {function} fn - Event callback
+     * @param {unknown} name - Event name
+     * @param {(...args: unknown[]) => void} fn - Event callback
      */
     on(name, fn) {
         const event = this.events.get(name);
-        if (event) event.add(fn);
-        else this.events.set(name, new Set([fn]));
+        if (event) {
+            event.add(fn);
+        } else {
+            this.events.set(name, new Set([fn]));
+        }
     }
 
     /**
      * The event will be removed after the first execution
-     * @param {*} name - Event name
-     * @param {function} fn - Event callback
+     * @param {unknown} name - Event name
+     * @param {(...args: unknown[]) => void} fn - Event callback
      */
     once(name, fn) {
         const wrapper = (...args) => {
@@ -85,12 +98,14 @@ export default class EventEmitter {
 
     /**
      * Removes the callback
-     * @param {*} name - Event name
-     * @param {function} fn - Event callback
+     * @param {unknown} name - Event name
+     * @param {(...args: unknown[]) => void} fn - Event callback
      */
     remove(name, fn) {
         const event = this.events.get(name);
-        if (!event) return;
+        if (!event) {
+            return;
+        }
         if (event.has(fn)) {
             event.delete(fn);
             return;
@@ -98,7 +113,9 @@ export default class EventEmitter {
         const wrapper = this.wrappers.get(fn);
         if (wrapper) {
             event.delete(wrapper);
-            if (event.size === 0) this.events.delete(name);
+            if (event.size === 0) {
+                this.events.delete(name);
+            }
         }
     }
 }

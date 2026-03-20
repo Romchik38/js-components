@@ -1,16 +1,22 @@
 'use strict';
 
-var schemes = ['http', 'https'];
+const schemes = ['http', 'https'];
+
+/**
+ * @typedef {object} Query
+ * @property {string} name - Non encoded text
+ * @property {string} value  - Non encoded text
+ */
 
 /**
  * 
- * @param {function} target - target or dynamicTarget
+ * @param {() => string} target - target or dynamicTarget
  * @param {string} scheme - HTTP or HTTPS
- * @param {string} authority 
- * @returns {function} - The urbuilder with ready to use prefix and target
+ * @param {string} authority  - [userinfo@]host[:port]
+ * @returns {function(string[],Query[],string): string} - The urbuilder with ready to use prefix and target
  */
 export default function(target, scheme = '', authority = ''){
-    var prefix;
+    let prefix;
     if (scheme === '' && authority === '') {
         prefix = '';
     } else {
@@ -29,14 +35,15 @@ export default function(target, scheme = '', authority = ''){
     }
     /** 
      * The urbuilder encode queries.
-     * @param {array<string>} parts - The Path /article looks like ['article']
-     * @param {array<Query>} queries  - The queries
+     * @param {string[]} parts - The Path /article looks like ['article']
+     * @param {Query[]} queries  - The queries
      * @param {string} fragment - The fragment without #
-     * */
+     * @returns {string} - Ready to use URL
+     */
     return function(parts, queries = [], fragment = ''){
-        var queryPart = '';
-        var queryItems = [];
-        for (var query of queries) {
+        let queryPart = '';
+        const queryItems = [];
+        for (const query of queries) {
             queryItems.push(`${encodeURIComponent(query.name)}=${encodeURIComponent(query.value)}`);
         }
         if (queryItems.length > 0) {
@@ -47,4 +54,4 @@ export default function(target, scheme = '', authority = ''){
         }
         return prefix + target(parts) + queryPart + fragment;
     }
-};
+}
