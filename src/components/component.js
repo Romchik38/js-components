@@ -1,6 +1,5 @@
 'use strict';
 
-/** @todo replace url */
 import { default as EE } from './../utils/eventEmitter.js';
 
 export default class Component extends EE {
