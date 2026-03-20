@@ -15,4 +15,4 @@ export default class Query {
         this.name = name;
         this.value = value;
     }
-};
+}
