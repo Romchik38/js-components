@@ -94,20 +94,21 @@ After creating a component, you can use the built-in functions:
 
 | api name                      | description                                                                |
 |-------------------------------|----------------------------------------------------------------------------|
-| `appendByClass(className)`    | Finds an element by class name and appends itself as a child.             |
-| `appendById(id)`              | Finds an element by id and appends itself as a child.                     |
-| `enable()`                    | Makes the component accessible.                                           |
-| `disable()`                   | Makes the component inaccessible.                                         |
-| `onEvent(name, callback)`     | Subscribes to a DOM event.                                                |
-| `hide()`                      | Hides the component.                                                      |
-| `show(type = 'block')`        | Displays the component.                                                   |
-| `text(newText = '')`          | Sets inner text.                                                          |
-| `onHide(callback)`            | Registers a callback to handle hiding.                                    |
-| `onShow(callback)`            | Registers a callback to handle showing.                                   |
-| `getValue()`                  | Accesses the value attribute.                                             |
-| `setValue(val)`               | Updates the value attribute.                                              |
-| `getName()`                   | Accesses the name attribute.                                              |
-| `setName(val)`                | Updates the name attribute.                                               |
+| `appendByClass(className)`    | Finds an element by class name and appends itself as a child.              |
+| `appendById(id)`              | Finds an element by id and appends itself as a child.                      |
+| `enable()`                    | Makes the component accessible.                                            |
+| `dataset(name)`               | Gets a data attribute.                                                     |
+| `disable()`                   | Makes the component inaccessible.                                          |
+| `onEvent(name, callback)`     | Subscribes to a DOM event.                                                 |
+| `hide()`                      | Hides the component.                                                       |
+| `show(type = 'block')`        | Displays the component.                                                    |
+| `text(newText = '')`          | Sets inner text.                                                           |
+| `onHide(callback)`            | Registers a callback to handle hiding.                                     |
+| `onShow(callback)`            | Registers a callback to handle showing.                                    |
+| `getValue()`                  | Accesses the value attribute.                                              |
+| `setValue(val)`               | Updates the value attribute.                                               |
+| `getName()`                   | Accesses the name attribute.                                               |
+| `setName(val)`                | Updates the name attribute.                                                |
 
 ### Component Collection
 

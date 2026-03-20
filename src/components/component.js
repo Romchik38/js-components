@@ -75,7 +75,7 @@ export default class Component extends EE {
         }
 
         const data = this.node.dataset[name];
-
+        
         if (data === undefined) {
             throw new Error(`Data attribute "${name}" does not exist`);
         }
