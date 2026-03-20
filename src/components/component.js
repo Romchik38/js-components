@@ -10,7 +10,7 @@ export default class Component extends EE {
         super();
         // Node
         if (! node instanceof HTMLElement) {
-            throw new Error('Wrong node type. Expected HtmlElement');
+            throw new TypeError('Wrong node type. Expected HtmlElement');
         } else {
             this.node = node;
         }
@@ -25,9 +25,9 @@ export default class Component extends EE {
      */
     appendByClass(className) {
         if (typeof className !== 'string') {
-            throw new Error('param className is invalid');
+            throw new TypeError('param className is invalid');
         } else if (className === '') {
-            throw new Error('param className is empty');
+            throw new TypeError('param className is empty');
         }
         var collection = document.getElementsByClassName(className);
         var len = collection.length;
@@ -46,9 +46,9 @@ export default class Component extends EE {
      */    
     appendById(id) {
         if (typeof id !== 'string') {
-            throw new Error('param id is invalid');
+            throw new TypeError('param id is invalid');
         } else if (id === '') {
-            throw new Error('param id is empty');
+            throw new TypeError('param id is empty');
         }
         var element = document.getElementById(id);
         if (element === null) {
@@ -60,6 +60,27 @@ export default class Component extends EE {
     /** Enable the component */
     enable() {
         this.node.disabled = false;
+    }
+
+    /**
+     * Gets a data attribute.
+     * @param {string} name
+     * @returns {string}
+     * @throws {TypeError} If the name is not a valid non-empty string.
+     * @throws {Error} If the attribute does not exist.
+     */
+    dataset(name) {
+        if (typeof name !== 'string' || name === '') {
+            throw new TypeError('Parameter "name" must be a non-empty string');
+        }
+
+        const data = this.node.dataset[name];
+
+        if (data === undefined) {
+            throw new Error(`Data attribute "${name}" does not exist`);
+        }
+
+        return data;
     }
 
     /** Disable the component */
@@ -74,10 +95,10 @@ export default class Component extends EE {
      * */
     onEvent(name, callback) {
         if (typeof name !== 'string') {
-            throw new Error('Param event name is invalid');
+            throw new TypeError('Param event name is invalid');
         } else {
             if (!this.domEvents.find((v) => v === name)) {
-                throw new Error('Param event name has non expected value: ' + name);
+                throw new TypeError('Param event name has non expected value: ' + name);
             }
         }
         if (typeof callback !== 'function') {
@@ -133,7 +154,7 @@ export default class Component extends EE {
             this.#fnHide = callback;
             return this;
         } else {
-            throw new Error('Param hide is invalid');
+            throw new TypeError('Param callback is invalid');
         }
     }
 
@@ -143,7 +164,7 @@ export default class Component extends EE {
             this.#fnShow = callback;
             return this;
         } else {
-            throw new Error('Param show is invalid');
+            throw new TypeError('Param callback is invalid');
         }
     }
 
@@ -166,7 +187,7 @@ export default class Component extends EE {
     // Create a component from a node by its class
     static fromClass(className) {
         if (typeof className !== 'string') {
-            throw new Error('Param className is invalid');
+            throw new TypeError('Param className is invalid');
         }
         var collection = document.getElementsByClassName(className);
         var len = collection.length;
@@ -182,7 +203,7 @@ export default class Component extends EE {
     // Create a component from a node by its name
     static fromName(name) {
         if (typeof name !== 'string') {
-            throw new Error('Param name is invalid');
+            throw new TypeError('Param name is invalid');
         }
         var collection = document.getElementsByName(name);
         var len = collection.length;
@@ -198,7 +219,7 @@ export default class Component extends EE {
     // Create a component from a node by its id
     static fromId(id) {
         if (typeof id !== 'string') {
-            throw new Error('Param id is invalid');
+            throw new TypeError('Param id is invalid');
         }
         var element = document.getElementById(id);
         if (element === null) {
@@ -215,11 +236,13 @@ export default class Component extends EE {
      * @returns 
      */
     static fromParams (tagName, attributes = {}, text = '') {
-        if (typeof tagName !== 'string') {
-            throw new Error('Invalid param create element tag name');
+        if (
+            typeof tagName !== 'string' || tagName === ''
+        ) {
+            throw new TypeError('Invalid param create element tag name');
         }
         if (typeof attributes !== 'object') {
-            throw new Error('Invalid param create element attributes');
+            throw new TypeError('Invalid param create element attributes');
         }
 
         var element = document.createElement(tagName);
