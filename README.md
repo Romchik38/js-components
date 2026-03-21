@@ -34,9 +34,9 @@ Simple counter, similar to the [Vue example](https://vuejs.org/guide/introductio
 </button>
 <script type="module">
     import { default as Component } from '/js/components/component.js';
-    var button = Component.fromId('api-button-count');
-    var counter = Component.fromId('api-count');
-    var count = 0;
+    const button = Component.fromId('api-button-count');
+    const counter = Component.fromId('api-count');
+    const count = 0;
     button.onEvent('click', () => {
         counter.text(++count);
     });
@@ -70,8 +70,8 @@ You can create a component in the following ways:
 - `construct` method:
 
     ```js
-    var div = document.createElement('div');
-    var d = new Component(div);
+    const div = document.createElement('div');
+    const d = new Component(div);
     ```
 
 - from HTMLElement class `Component.fromClass(className)`
@@ -80,7 +80,7 @@ You can create a component in the following ways:
 - from parameters:
 
     ```js
-    var component = Component.fromParams(
+    const component = Component.fromParams(
         'div',
         {
             class: 'some-class'  // class is an attribute name
@@ -125,10 +125,10 @@ You can create a component collection in the following ways:
 - `construct` method:
 
     ```js
-    var div1 = document.createElement('div');
-    var div2 = document.createElement('div');
-    var elements = [div1, div2];
-    var dc = new ComponentCollection(elements);
+    const div1 = document.createElement('div');
+    const div2 = document.createElement('div');
+    const elements = [div1, div2];
+    const dc = new ComponentCollection(elements);
     ```
 
 - from HTMLElement class `ComponentCollection.fromClass(className)`
@@ -171,8 +171,8 @@ class SuperButton extends Component {
     }
 }
 
-var button = Component.fromId('id1');
-var superButton = SuperButton.fromId('id2');
+const button = Component.fromId('id1');
+const superButton = SuperButton.fromId('id2');
 
 superButton.on('someEvent', (...args) => {
     // 1. work with event's arguments
@@ -213,7 +213,7 @@ Urlbuilder is an utilite to build URLs from path parts, query parameters and fra
 
 #### 1. Create urbuilder instance
 
-First. The `urbuilder` need a `target` to form the path. You can choose from 2 variants:
+First. The `urbuilder` need a `target` to form the path. You can choose from 2 constiants:
 
 - `target` - build a standart path.
 - `dynamicTarget(dynamicRoot)` - used to swap a special root segment. Based on `target`.
@@ -227,10 +227,10 @@ import urlbuilder from '/js/urlbuilder/urlbuilder.js';
 import target from '/js/urlbuilder/target.js';
 
 // Absolute URL
-var ub = urlbuilder(target, 'https', 'example.com');
+const ub = urlbuilder(target, 'https', 'example.com');
 
 // Relative URL
-var ub2 = urlbuilder(target);
+const ub2 = urlbuilder(target);
 ```
 
 #### 2. Form an URL
@@ -244,8 +244,8 @@ Once you created an urlbuilder instance, you can start to form urls:
 ##### Create simple URL
 
 ```js
-var parts = ['articles'];
-var url = ub(parts); // 'https://example.com/articles'
+const parts = ['articles'];
+const url = ub(parts); // 'https://example.com/articles'
 ```
 
 ##### Create URL with queries
@@ -255,16 +255,16 @@ If you need query params, follow next steps:
 ```js
 import Query from '/js/urlbuilder/query.js';
 
-var parts = ['articles'];
-var queries = [new Query('order', 'desc'), new Query('page', '2')];
-var url = ub(parts, queries); // 'https://example.com/articles?order=desc&page=2'
+const parts = ['articles'];
+const queries = [new Query('order', 'desc'), new Query('page', '2')];
+const url = ub(parts, queries); // 'https://example.com/articles?order=desc&page=2'
 ```
 
 ##### Сreate URL with fragment
 
 ```js
-var parts = ['articles'];
-var url = ub(parts, [], 'table-1'); // 'https://example.com/articles#table-1'
+const parts = ['articles'];
+const url = ub(parts, [], 'table-1'); // 'https://example.com/articles#table-1'
 ```
 
 #### 3. Full Example
@@ -274,10 +274,10 @@ import urlbuilder from '/js/urlbuilder/urlbuilder.js';
 import target from '/js/urlbuilder/target.js';
 import Query from '/js/urlbuilder/query.js';
 
-var ub = urlbuilder(target, 'https', 'example.com');
-var query1 = new Query('order', 'desc');
-var query2 = new Query('page', '2');
-var url = ub(['articles'], [query1, query2], 'header1'); // 'https://example.com/articles?order=desc&page=2#header1'
+const ub = urlbuilder(target, 'https', 'example.com');
+const query1 = new Query('order', 'desc');
+const query2 = new Query('page', '2');
+const url = ub(['articles'], [query1, query2], 'header1'); // 'https://example.com/articles?order=desc&page=2#header1'
 ```
 
 #### 4. Additional
@@ -287,8 +287,8 @@ var url = ub(['articles'], [query1, query2], 'header1'); // 'https://example.com
     ```js
     import dynamicTarget from '/js/urlbuilder/dynamicTarget.js';
 
-    var dynamic = dynamicTarget('api');
-    var ub = urlbuilder(dynamic);
+    const dynamic = dynamicTarget('api');
+    const ub = urlbuilder(dynamic);
 
     ub(['root', 'users']); // '/api/users'
     ```
