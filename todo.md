@@ -1,4 +1,3 @@
 # TODO
 
-- license
 - version

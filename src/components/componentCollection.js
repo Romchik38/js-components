@@ -1,3 +1,9 @@
+/**
+ * This file is part of the project licensed under the MIT License.
+ * Copyright (c) 2026 Serhii Romanenko
+ * See LICENSE file in the project root for full license information.
+ */
+ 
 'use strict';
 
 import { default as Component } from './component.js';
