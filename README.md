@@ -1,6 +1,6 @@
 # Components
 
-![status](https://placehold.co/15x15/ff0000/000000/png?text=D) `status: in development`
+`status` ![status](https://placehold.co/50x18/41ab2e/000000/png?text=ready) `version` ![version](https://placehold.co/25x18/538ad4/000000/png?text=1.0.0)
 
 Contents:
 
@@ -8,8 +8,9 @@ Contents:
 - Example
 - Install
 - Component API
-- Run tests
 - Other utils
+- Run tests
+- Code quality
 
 ## Description
 
@@ -195,15 +196,6 @@ API:
 | `once(name, fn)`      | Subscribes a callback that is removed after the first execution.                              |
 | `remove(name, fn)`    | Removes a callback from an event.                                                             |
 
-## Run tests
-
-All modules are tested. You can find tests in [test](./test/) dir. To run the tests, follow these steps:
-
-1. Run in the console `docker compose up --build`.
-2. Visit [localhost:8080](http://localhost:8080).
-3. Select the desired test suite.
-4. Open browser console and check tests' status.
-
 ## Other utils
 
 Contents:
@@ -302,3 +294,17 @@ var url = ub(['articles'], [query1, query2], 'header1'); // 'https://example.com
     ```
 
 - You don't need to encode query parameters, urlbuilder does it itself.
+
+## Run tests
+
+All modules are tested. You can find tests in [test](./test/) dir. To run the tests, follow these steps:
+
+1. Run in the console `docker compose up --build`.
+2. Visit [localhost:8080](http://localhost:8080).
+3. Select the desired test suite.
+4. Open browser console and check tests' status.
+
+## Code quality
+
+- 68 tests in the [test](./test/) directory.
+- The code is checked by ESLint. See [.eslintrc.json](./.eslintrc.json) for more details.
