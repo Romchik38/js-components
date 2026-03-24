@@ -93,7 +93,7 @@ You can create a component in the following ways:
 
 After creating a component, you can use the built-in functions:
 
-| api name                      | description                                                                |
+| API name                      | description                                                                |
 |-------------------------------|----------------------------------------------------------------------------|
 | `appendByClass(className)`    | Finds an element by class name and appends itself as a child.              |
 | `appendById(id)`              | Finds an element by id and appends itself as a child.                      |
@@ -138,7 +138,7 @@ You can create a component collection in the following ways:
 
 After creating a component collection, you can use the built-in functions:
 
-| api name                      | description                            |
+| API name                      | description                            |
 |-------------------------------|----------------------------------------|
 | `disable()`                   | Makes the components inaccessible.     |
 | `enable()`                    | Makes the components accessible.       |
@@ -185,7 +185,7 @@ superButton.on('someEvent', (...args) => {
 
 API:
 
-| api                   | description                                                                                   |
+| API                   | description                                                                                   |
 |-----------------------|-----------------------------------------------------------------------------------------------|
 | `clear(name)`         | Deletes the event by name, or deletes all events if no name is provided.                      |
 | `count(name)`         | Returns the number of registered callbacks.                                                   |
@@ -200,7 +200,7 @@ API:
 
 Contents:
 
-- [URL builder](./src/urlbuilder/urlbuilder.js) — helps build URLs from path parts, query parameters, and optional fragments.
+- [URL builder](./src/urlbuilder/createUrlBuilder.js) — helps build URLs from path parts, query parameters, and optional fragments.
 
 ### URL builder
 
@@ -223,7 +223,7 @@ Second. You can pass optional parameters `scheme` and `authority` to form an abs
 Finaly. To create an urlbuilder instance run the function constructor `urlbuilder(target, 'https', 'example.com')`.
 
 ```js
-import urlbuilder from '/js/urlbuilder/urlbuilder.js';
+import urlbuilder from '/js/urlbuilder/createUrlBuilder.js';
 import target from '/js/urlbuilder/target.js';
 
 // Absolute URL
@@ -270,7 +270,7 @@ const url = ub(parts, [], 'table-1'); // 'https://example.com/articles#table-1'
 #### 3. Full Example
 
 ```js
-import urlbuilder from '/js/urlbuilder/urlbuilder.js';
+import urlbuilder from '/js/urlbuilder/createUrlBuilder.js';
 import target from '/js/urlbuilder/target.js';
 import Query from '/js/urlbuilder/query.js';
 

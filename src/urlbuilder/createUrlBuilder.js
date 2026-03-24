@@ -15,7 +15,7 @@ const schemes = ['http', 'https'];
  */
 
 /**
- * 
+ * Creates a URL builder function with a predefined scheme and authority.
  * @param {() => string} target - target or dynamicTarget
  * @param {string} scheme - HTTP or HTTPS
  * @param {string} authority  - [userinfo@]host[:port]

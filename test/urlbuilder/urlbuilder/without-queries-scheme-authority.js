@@ -1,6 +1,6 @@
 'use strict';
 
-import { default as urlbuilder } from '/js/urlbuilder/urlbuilder.js';
+import { default as urlbuilder } from '/js/urlbuilder/createUrlBuilder.js';
 import { default as target } from '/js/urlbuilder/target.js';
 
 (function(){
