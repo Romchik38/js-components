@@ -10,6 +10,7 @@ Contents:
 - Component API
 - Other utils
 - Cross-module communication with CustomEvents
+- Claude Code skill
 - Run tests
 - Code quality
 
@@ -340,6 +341,18 @@ The recommended approach:
 The submodule fires `submoduleEvent` with the updated count as `detail`; the main module catches it and updates the display. Neither module imports the other.
 
 [Full example here](./test/examples/global-events.html).
+
+## Claude Code skill
+
+A [Claude Code](https://claude.ai/code) skill is included in [`skills/js-components/SKILL.md`](./skills/js-components/SKILL.md). It gives Claude instant access to the full API reference and common patterns so you don't need to describe the library in every prompt.
+
+**Install:**
+
+```bash
+cp -r skills/js-components ~/.claude/skills/
+```
+
+After copying, Claude will automatically suggest the skill whenever you work with `Component`, `EventEmitter`, `ComponentCollection`, `Form`, or `urlbuilder`.
 
 ## Run tests
 
