@@ -9,6 +9,7 @@ Contents:
 - Install
 - Component API
 - Other utils
+- Cross-module communication with CustomEvents
 - Run tests
 - Code quality
 
@@ -294,6 +295,51 @@ const url = ub(['articles'], [query1, query2], 'header1'); // 'https://example.c
     ```
 
 - You don't need to encode query parameters, urlbuilder does it itself.
+
+## Cross-module communication with CustomEvents
+
+When you split your page into independent ES modules, you can use the browser's built-in `CustomEvent` + `document` as a lightweight message bus. Each module works in isolation — the only shared contract is the event name and the `detail` payload.
+
+The recommended approach:
+
+- **Submodule** — extends `Component` and encapsulates dispatch logic inside a method.
+- **Main module** — listens on `document` and reacts to events without knowing anything about the submodule's internals.
+
+```html
+<!-- Main module -->
+<script type="module">
+    import { default as Component } from '/js/components/component.js';
+
+    const counter = Component.fromId('api-count');
+
+    document.addEventListener('submoduleEvent', (e) => {
+        counter.text(e.detail);
+    });
+</script>
+
+<!-- Submodule -->
+<script type="module">
+    import { default as Component } from '/js/components/component.js';
+
+    class Submodule extends Component {
+        dispatch(count) {
+            document.dispatchEvent(new CustomEvent('submoduleEvent', {
+                detail: count
+            }));
+        }
+    }
+
+    const button = Submodule.fromId('api-button-count');
+    let count = 0;
+    button.onEvent('click', () => {
+        button.dispatch(++count);
+    });
+</script>
+```
+
+The submodule fires `submoduleEvent` with the updated count as `detail`; the main module catches it and updates the display. Neither module imports the other.
+
+[Full example here](./test/examples/global-events.html).
 
 ## Run tests
 

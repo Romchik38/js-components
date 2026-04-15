@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+</head>
+
+<body>
+    <h2>Counter example</h2>
+    <button id="api-button-count">
+        Count is: <span id="api-count">0</span>
+    </button>
+    <!-- Main module -->
+    <script type="module">
+        import { default as Component } from '/js/components/component.js';
+        const counter = Component.fromId('api-count');
+        document.addEventListener('submoduleEvent', (e) => {
+            counter.text(e.detail);
+        })
+    </script>
+
+    <!-- Submodule module -->
+    <script type="module">
+        import { default as Component } from '/js/components/component.js';
+        // Hide logic inside a method
+        class Submodule extends Component {
+            dispatch(count) {
+                document.dispatchEvent(new CustomEvent("submoduleEvent", {
+                    detail: count
+                }));
+            }
+        }
+        // Workflow
+        const button = Submodule.fromId('api-button-count');
+        let count = 0;
+        button.onEvent('click', () => {                      
+            button.dispatch(++count);
+        });
+    </script>
+</body>
+
+</html>

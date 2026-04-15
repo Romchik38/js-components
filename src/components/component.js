@@ -24,7 +24,6 @@ export default class Component extends EE {
             this.node = node;
         }
         // events
-        this.domEvents = ['click', 'change', 'submit'];
         this.registeredEvents = [];
     }
 
@@ -106,11 +105,8 @@ export default class Component extends EE {
     onEvent(name, callback) {
         if (typeof name !== 'string') {
             throw new TypeError('Param event name is invalid');
-        } else {
-            if (!this.domEvents.find((v) => v === name)) {
-                throw new TypeError('Param event name has non expected value: ' + name);
-            }
-        }
+        } 
+        
         if (typeof callback !== 'function') {
             throw new Error('Param event callback is invalid');
         }
@@ -124,7 +120,7 @@ export default class Component extends EE {
         }
         existingEvents.push(callback);
         this.registeredEvents[name] = existingEvents;
-
+        
         return this;
     }
 
@@ -311,9 +307,8 @@ export default class Component extends EE {
      * @param {string} name - Event name
      * @param  {...unknown} params - Actually, it's an array with a single Event.
      */
-    _event(name, ...params) {
+    _event(name, ...params) {     
         const existingEvents = this.registeredEvents[name] || [];
-        
         if (existingEvents.length === 0) {
             throw new Error(`Event with name ${name} is not registered`);
         }
