@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-04-15
+
+### Added
+
+- claude code skill
+- some examples in /test
+
 ## [1.0.0] - 2026-03-24
 
 ### Added
