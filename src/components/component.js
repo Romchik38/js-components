@@ -11,6 +11,7 @@ import { default as EE } from './../utils/eventEmitter.js';
 export default class Component extends EE {
     #fnHide = null;
     #fnShow = null;
+    #node;
 
     /**
      * @param {HTMLElement} node - HTMLElement
@@ -301,6 +302,26 @@ export default class Component extends EE {
         element.innerText = text;
         return new this(element);
     }
+    
+    /**
+     * Creates a component from a node by its tag name
+     * @param {string} tagName - HTMLElement tag
+     * @returns {Component} - The Component instance
+     */
+    static fromTag(tagName) {
+        if (typeof tagName !== 'string') {
+            throw new Error('Param tagName is invalid');
+        }
+        const nodes = document.getElementsByTagName(tagName);
+        const len = nodes.length;
+        if (len === 0) {
+            throw new Error(`element ${tagName} not found`);
+        } else if (len > 1) {
+            throw new Error(`element ${tagName} is more than one`);
+        }
+        const node = nodes[0];
+        return new this(node);
+    }  
     
     /**
      * This function runs on every event and calls all registered callbacks.

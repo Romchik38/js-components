@@ -79,6 +79,7 @@ You can create a component in the following ways:
 - from HTMLElement class `Component.fromClass(className)`
 - from HTMLElement name `Component.fromName(name)`
 - from HTMLElement id `Component.fromId(id)`
+- from HTMLElement tag `Component.fromTag(tagName)`
 - from parameters:
 
     ```js
