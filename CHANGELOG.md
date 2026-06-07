@@ -2,6 +2,16 @@
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-06-07
+
+### Added
+
+- Component function `fromTag`
+
+### Modified
+
+- Component `node` is private now
+
 ## [1.0.1] - 2026-04-15
 
 ### Added
